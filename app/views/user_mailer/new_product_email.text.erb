@@ -1,0 +1,8 @@
+A new claim has been created on <%= @product.created_at.to_s(:short)%>
+
+Name: <%= @product.name.capitalize %>
+
+Price: <%= "$#{@product.price}" %>
+
+Details: <%= @product.description %>
+

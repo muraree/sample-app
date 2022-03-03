@@ -1,0 +1,32 @@
+{
+  "name": "rails-vite-app",
+  "private": true,
+  "dependencies": {
+    "@hennge/vue3-pagination": "^1.0.17",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/actiontext": "^6.1.4-1",
+    "@rails/activestorage": "^6.0.0",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.6",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "debounce": "^1.2.1",
+    "font-awesome": "^4.7.0",
+    "nprogress": "^0.2.0",
+    "rollup-plugin-gzip": "^2.5.0",
+    "sass": "^1.38.1",
+    "vite": "^2.7.7",
+    "vite-plugin-ruby": "^3.0.5",
+    "vue": "^3.1.5",
+    "vue-router": "4.0.10",
+    "vue-sweetalert2": "^5.0.2",
+    "vue3-dropzone": "^0.0.7",
+    "vuex": "4.0.2"
+  },
+  "version": "0.1.0",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=12.x",
+    "yarn": "1.x"
+  }
+}

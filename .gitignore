@@ -27,3 +27,18 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Vite Ruby
+/public/vite
+/public/vite-dev
+/public/vite-test
+/public/packs
+/public/uploads/*
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+*.local
+.DS_Store
+.env
+
