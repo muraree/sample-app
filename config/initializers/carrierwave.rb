@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
   # Use AWS storage if in production
   if Rails.env.production?
     config.storage    = :aws
-    config.aws_bucket = ENV.fetch('S3_BUCKET_NAME') # for AWS-side bucket access permissions config, see section below
+    config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket) || ENV.fetch('S3_BUCKET_NAME') # for AWS-side bucket access permissions config, see section below
     config.aws_acl    = 'private'
 
     # The maximum period for authenticated_urls is only 7 days.
@@ -23,9 +23,9 @@ CarrierWave.configure do |config|
     } }
 
     config.aws_credentials = {
-      access_key_id:     ENV.fetch('AWS_ACCESS_KEY_ID'),
-      secret_access_key: ENV.fetch('AWS_SECRET_KEY'),
-      region:            'ap-southeast-1', # Required
+      access_key_id:     Rails.application.credentials.dig(:aws, :access_key_id) || ENV.fetch('AWS_ACCESS_KEY_ID'),
+      secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key) || ENV.fetch('AWS_SECRET_KEY'),
+      region:            Rails.application.credentials.dig(:aws, :region) || 'ap-southeast-1', # Required
       # stub_responses:    Rails.env.test? # Optional, avoid hitting S3 actual during tests
     }
   end
