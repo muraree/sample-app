@@ -1,24 +1,36 @@
-# README
+# Deploy Sample-App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Deployment instructions
+Use capistrano for deployments
 
-Things you may want to cover:
+#### Prerequisite
+* EC2 Instance having user deploy (Update deploy.rb if needed)
 
-* Ruby version
+* Setup SSH keys for SSH to EC2 on local system
 
-* System dependencies
+* Install NodeJS, Rvm, Ruby 2.7.4, Nginx, Redis Server
 
-* Configuration
+* Install System Dependencies like libpq-dev & imagemagick
+`sudo apt-get install libpq-dev imagemagick`)
 
-* Database creation
+* Give Permission to deploy user directory chmod o=rx /home/deploy
 
-* Database initialization
+* _`sample-app`_ refers to application name, you can change it to whatever you want.
 
-* How to run the test suite
+#### Configuration
+* Setup Nginx on Server
 
-* Services (job queues, cache servers, search engines, etc.)
+* Run `cap production puma:systemd:config puma:systemd:enable` to create Puma configuration on server.
 
-* Deployment instructions
+* You can find file at ``/etc/systemd/system/puma_sample-app_production.service`` if using ubuntu.
 
-* ...
+* The ExecStart should match with this for proper running of Puma ``ExecStart=/home/deploy/.rvm/bin/rvm 2.7.4 do bundle exec puma -e production -b unix:/home/deploy/apps/sample-app/shared/tmp/sockets/sample-app-puma.sock
+``
+
+* Update EC2 IP in ``config/deploy/production.rb``
+
+* Run ``cap production deploy:initial`` if it is first deployment (Also Copy master.key and create database.yml in ``/home/deploy/apps/sample-app/shared/config/`` folder)
+
+* Finally run ``cap production deploy``
+
+#### Deployment Success (You can see app running at provided EC2 IP)
