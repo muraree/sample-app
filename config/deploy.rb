@@ -71,5 +71,7 @@ namespace :deploy do
   end
 
   before :starting,          :check_revision
+  # Fix Vite Assets Not Compiling
   after  :compile_assets,    :compile_vite_ruby
+  after  :finishing,         :restart_puma_server
 end
